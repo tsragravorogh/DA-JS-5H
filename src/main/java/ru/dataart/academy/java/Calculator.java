@@ -13,7 +13,7 @@ public class Calculator {
      * @return - how many times character is in files
      */
     public Integer getNumberOfChar(String zipFilePath, char character) {
-        Integer count = 0;
+        Integer countOfChar = 0;
 
         try {
             final ZipFile zipFile = new ZipFile(zipFilePath);
@@ -27,7 +27,7 @@ public class Calculator {
                 int symbol = bf.read();
                 while (symbol != -1) {
                     if (character == (char) symbol) {
-                        count++;
+                        countOfChar++;
                     }
                     symbol = bf.read();
                 }
@@ -35,7 +35,7 @@ public class Calculator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return count;
+        return countOfChar;
     }
 
     /**
@@ -44,7 +44,7 @@ public class Calculator {
      */
 
     public Integer getMaxWordLength(String zipFilePath) {
-        int count = 0;
+        int maxLength = 0;
 
         try {
             final ZipFile zipFile = new ZipFile(zipFilePath);
@@ -59,8 +59,8 @@ public class Calculator {
                 while ((line = bf.readLine()) != null) {
                     String[] words = line.split(" ");
                     for (String w : words) {
-                        if(w.length() > count) {
-                            count = w.length();
+                        if(w.length() > maxLength) {
+                            maxLength = w.length();
                         }
                     }
                 }
@@ -68,6 +68,6 @@ public class Calculator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return count;
+        return maxLength;
     }
 }
